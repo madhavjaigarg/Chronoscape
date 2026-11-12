@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://ciftium3ym3v4"]
+
+[ext_resource type="Script" uid="uid://ddga23pn70gtx" path="res://scripts/player/player.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://cftiyyixpfx0p" path="res://scripts/combat/health_component.gd" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://vr65asbq8khw" path="res://scripts/combat/hurtbox.gd" id="2_gmlin"]
+[ext_resource type="Script" uid="uid://flrakov215mk" path="res://scripts/combat/hitbox.gd" id="2_lvxji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
+size = Vector2(31, 48)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dovo2"]
+size = Vector2(31, 48)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8afob"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p47bc"]
+size = Vector2(40, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
+size = Vector2(28, 44)
+
+[node name="Player" type="CharacterBody2D" unique_id=1838201097]
+collision_mask = 2
+script = ExtResource("1_8afob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2062064765]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_8afob")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=2064488307]
+
+[node name="Body" type="Sprite2D" parent="Visuals" unique_id=38297101]
+texture = SubResource("PlaceholderTexture2D_dovo2")
+
+[node name="Head" type="Sprite2D" parent="Visuals" unique_id=507598824]
+position = Vector2(2, -29)
+scale = Vector2(-1, 1)
+texture = SubResource("PlaceholderTexture2D_8afob")
+
+[node name="Outfit" type="Sprite2D" parent="Visuals" unique_id=1925606209]
+
+[node name="Limbs" type="Node2D" parent="Visuals" unique_id=918266974]
+
+[node name="Limb1" type="Marker2D" parent="Visuals/Limbs" unique_id=2139336865]
+position = Vector2(20, -10)
+
+[node name="Limb2" type="Marker2D" parent="Visuals/Limbs" unique_id=1486892509]
+position = Vector2(-20, -10)
+
+[node name="Limb3" type="Marker2D" parent="Visuals/Limbs" unique_id=2075739947]
+position = Vector2(0, -24)
+
+[node name="Limb4" type="Marker2D" parent="Visuals/Limbs" unique_id=872840095]
+position = Vector2(28, 0)
+
+[node name="Limb5" type="Marker2D" parent="Visuals/Limbs" unique_id=714052368]
+position = Vector2(-28, 0)
+
+[node name="Limb6" type="Marker2D" parent="Visuals/Limbs" unique_id=1175186384]
+position = Vector2(14, -22)
+
+[node name="Limb7" type="Marker2D" parent="Visuals/Limbs" unique_id=908937964]
+position = Vector2(-14, -22)
+
+[node name="MeleeHitbox" type="Area2D" parent="Visuals" unique_id=1149169942]
+position = Vector2(36, 0)
+collision_layer = 8
+collision_mask = 512
+monitorable = false
+script = ExtResource("2_lvxji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/MeleeHitbox" unique_id=1609250640]
+shape = SubResource("RectangleShape2D_p47bc")
+
+[node name="Flash" type="ColorRect" parent="Visuals/MeleeHitbox" unique_id=1650419864]
+offset_left = -20.0
+offset_top = -16.0
+offset_right = 20.0
+offset_bottom = 16.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.5058824)
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=226656670]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_gmlin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1219066323]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_gmlin")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1837577382]
+script = ExtResource("2_dovo2")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1870652924]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=322699369]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=561174150]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1143715185]
+position_smoothing_enabled = true

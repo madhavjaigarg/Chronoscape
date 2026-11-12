@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cghjnvub5wx5q"]
+
+[ext_resource type="Script" uid="uid://vr65asbq8khw" path="res://scripts/combat/hurtbox.gd" id="1_4mjir"]
+[ext_resource type="Script" uid="uid://dv7k6urlkhf7b" path="res://scripts/enemies/training_dummy.gd" id="1_du35q"]
+[ext_resource type="Script" uid="uid://cftiyyixpfx0p" path="res://scripts/combat/health_component.gd" id="2_du35q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn3ee"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyexh"]
+size = Vector2(30, 46)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oypjc"]
+size = Vector2(32, 48)
+
+[node name="Dummy" type="CharacterBody2D" unique_id=964944195]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_du35q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1911578346]
+shape = SubResource("RectangleShape2D_mn3ee")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=853004940]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_4mjir")
+metadata/_custom_type_script = "uid://vr65asbq8khw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2132693791]
+shape = SubResource("RectangleShape2D_jyexh")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1716224789]
+script = ExtResource("2_du35q")
+max_health = 20.0
+metadata/_custom_type_script = "uid://cftiyyixpfx0p"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1637416882]
+texture = SubResource("PlaceholderTexture2D_oypjc")

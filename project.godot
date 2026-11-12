@@ -14,11 +14,26 @@ config/name="Chronoscape"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cv2acwi7h7h3r"
+
+[autoload]
+
+Events="*uid://f6l6eoxo78tj"
+GameState="*uid://bfeennjvgy1aq"
+SaveSystem="*uid://b6yuu6m6fumle"
+EraManager="*uid://dscajc0rpvrx"
+SceneRouter="*uid://crwqisdjsx0m5"
+
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/stretch/mode="canvas_items"
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [input]
 
@@ -172,14 +187,18 @@ debug_god_mode={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="PlayerHitBox"
 2d_physics/layer_5="EnemyHitBox"
-2d_physics/layer_6="Hurtbox"
+2d_physics/layer_6="PlayerHurtbox"
 2d_physics/layer_7="Gate"
 2d_physics/layer_8="Interactable"
 2d_physics/layer_9="Projectile"
+2d_physics/layer_10="EnemyHurtBox"
+2d_physics/layer_11="Hazard"
+2d_physics/layer_12="Trigger"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 
@@ -187,3 +206,5 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
